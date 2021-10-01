@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios'
 
 const SignInForm = () => {
-    const [email, setEmail] = useState("john@smith.com");
-    const [password, setPassword] = useState("your password")
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("")
     const handleLog = (e) => {
         e.preventDefault();
         const emailError = document.querySelector(".email.error");
@@ -18,9 +18,9 @@ const SignInForm = () => {
         )
         .then((res) => {
             if (res.data.errors) {
+                console.log(res);
                 emailError.innerHTML = res.data.errors.email;
                 passwordError.innerHTML = res.data.errors.password;
-                
             } else {
                 window.location = '/';
             }
@@ -31,11 +31,11 @@ const SignInForm = () => {
 
     };
     return (
-        <form action="" id="sign-up-form" onSubmit={handleLog}>
+        <form action="" id="sign-in-form" onSubmit={handleLog}>
             <label htmlFor="emailText">E-mail</label>
             <br />
             <input id="emailText" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <div className="email error">rrrrr</div>
+            <div className="email error"></div>
             <br />
             <br />
             <label htmlFor="password">mot de passe</label>
